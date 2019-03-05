@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+CART_SESSION_ID = 'cart'
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+	'cart',
 ]
 
 MIDDLEWARE = [
