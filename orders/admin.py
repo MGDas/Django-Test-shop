@@ -28,25 +28,27 @@ def ExportToCSV(modeladmin, request, queryset):
             data_row.append(value)
         writer.writerow(data_row)
     return response
-    ExportToCSV.short_description = 'Export CSV'
+ExportToCSV.short_description = 'Export CSV'
 
 
 def OrderDetail(obj):
     return format_html('<a href="{}">Посмотреть</a>'.format(
         reverse('admin_order_detail_url', args=[obj.id])
     ))
+OrderDetail.short_description = 'ИНФО'
 
-
-# class OrderItemInline(admin.TabularInline):
-#     model = OrderItem
-#     raw_id_field = ['product']
+def OrderPDF(obj):
+    return format_html('<a href="{}">PDF</a>'.format(
+        reverse('admin_order_pdf_url', args=[obj.id])
+    ))
+OrderPDF.short_description = 'В PDF'
 
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['last_name', 'first_name', 'email', 'address',
-                    'postal_code', 'city', 'paid', 'created', 'updated', OrderDetail]
+                    'postal_code', 'city', 'paid', 'created', 'updated', OrderDetail, OrderPDF]
     readonly_fields = ['id', 'first_name', 'last_name', 'email', 'address',
-                    'postal_code', 'city', 'paid', 'created', 'updated', OrderDetail]
+                    'postal_code', 'city', 'paid', 'created', 'updated', OrderDetail, OrderPDF]
     list_filter = ['paid', 'created', 'updated']
     # inlines = [OrderItemInline]
     actions = [ExportToCSV]
