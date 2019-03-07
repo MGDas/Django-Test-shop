@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
 	'cart',
+    'orders',
+    'paypal.standard.ipn',
+    'payment',
 ]
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,3 +136,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Paypal
+
+PAYPAL_RECEIVER_EMAIL = 'mgdas051@gmail.com'
+PAYPAL_TEST = True
